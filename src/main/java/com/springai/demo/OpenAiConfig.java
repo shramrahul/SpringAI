@@ -12,7 +12,7 @@ public class OpenAiConfig {
 
     @Bean
     public OpenAiApi openAiApi() {
-        return new OpenAiApi("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");
+        return new OpenAiApi("your_openAI_key");
     }
 
     @Bean
