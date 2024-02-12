@@ -1,9 +1,7 @@
 package com.springai.demo;
 
-import org.springframework.ai.chat.ChatClient;
-import org.springframework.ai.openai.OpenAiChatClient;
-import org.springframework.ai.openai.OpenAiChatOptions;
-import org.springframework.ai.openai.api.OpenAiApi;
+import com.theokanning.openai.service.OpenAiService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,17 +9,9 @@ import org.springframework.context.annotation.Configuration;
 public class OpenAiConfig {
 
     @Bean
-    public OpenAiApi openAiApi() {
-        return new OpenAiApi("your_openAI_key");
+    public OpenAiService openAiApiService() {
+        return new OpenAiService("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");
     }
 
-    @Bean
-    public ChatClient chatClient(OpenAiApi openAiApi) {
-        return new OpenAiChatClient(openAiApi)
-                .withDefaultOptions(OpenAiChatOptions.builder()
-                        .withModel("gpt-4-0125-preview")
-                        .withTemperature(0.4F)
-                        .withMaxTokens(500)
-                        .build());
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.springai.demo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 public class DemoApplication {
 
 	@Autowired
-	private OpenAiClient openAiClient;
+	private OpenAiGptClient openAiGptClient;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -22,9 +23,9 @@ public class DemoApplication {
 	CommandLineRunner run() {
 		return args -> {
 			String country = "Nepal"; // Example country
-			String tallMountains = openAiClient.getTallMountains(country);
-			System.out.println("Tall mountains in " + country + ": " + tallMountains);
+			Mountains tallMountains = openAiGptClient.getTallMountains(country);
+			ObjectMapper objectMapper = new ObjectMapper();
+			System.out.println("Tall mountains in " + country + ": " + objectMapper.writeValueAsString(tallMountains));
 		};
 	}
-
 }
